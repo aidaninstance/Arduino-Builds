@@ -94,7 +94,7 @@ void setup() {
   //}
 
   delay(2000);
-  pen_depth_adjust()
+  pen_depth_adjust();
   world_sample();
   motorStep(17.25,34.8,500);
   delay(1200000);
