@@ -17,11 +17,16 @@ void penContact(bool contact_request) {
   }
 }
 
-void lift_to(double x, double y) {
+void lift_to(double x, double y, int save) {
   delay(100);
   penContact(0);
   motorStep(x, y, 900);
   delay(100);
-  penContact(1);
+  if (save == 0) {
+    penContact(1);
+  }
+  else {
+    x_y_save();
+  }
 }
 

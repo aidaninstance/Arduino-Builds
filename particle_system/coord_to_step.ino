@@ -41,7 +41,7 @@ void motorStep(double x, double y, double stepSpeed) {
         count_LM++;
       }
       digitalWrite(Step_LM, HIGH);
-
+      
     }
   }
 }

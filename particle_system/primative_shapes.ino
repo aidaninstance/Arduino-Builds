@@ -1,14 +1,14 @@
 void circle(double radius, double x_init, double y_init) {
   double y;
-  lift_to(x_init, y_init);
-  for (double x = (x_init - radius); x < (x_init + radius); x = x + .02) {
+  lift_to(x_init -radius, y_init,0);
+  for (double x = (x_init - radius); x < (x_init + radius); x = x + .005) {
     y = sqrt(abs(radius * radius - (x - x_init) * (x - x_init))) + y_init;
-    motorStep(x, y, 3000);
+    motorStep(x, y, 4000);
   }
 
-  for (double x = (x_init + radius); x > (x_init - radius); x = x - .02) {
+  for (double x = (x_init + radius); x > (x_init - radius); x = x - .005) {
     y = -1 * sqrt(abs(radius * radius - (x - x_init) * (x - x_init))) + y_init;
-    motorStep(x + pnoise(x, y / 2, _time / 50) * (radius / 4), y + pnoise(x / 2, y, _time / 50) * (radius / 4), 3000);
+    motorStep(x + pnoise(x, y / 2, _time / 50) * (radius / 4), y + pnoise(x / 2, y, _time / 50) * (radius / 4), 4000);
     _time++;
   }
 }

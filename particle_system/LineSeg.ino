@@ -10,7 +10,7 @@ void lineSeg(double x1, double y1, double x2, double y2, bool lift, double Speed
   double b = y1 - m * x1;
 
   if (lift == 1)
-    lift_to(x1, y1);
+    lift_to(x1, y1, 0);
 
   if (x1 < x2) {
     for (double x = x1; x < x2; x = x + .02) {
@@ -36,8 +36,8 @@ void lineSeg(double x1, double y1, double x2, double y2, bool lift, double Speed
 
 
 void lineSegP(double x1, double y1, double x2, double y2, double Speed,
-               int blot_time, float x_noise_mult, int y_noise_mult,
-               float time_noise_mult, float noise_scalar) {
+              int blot_time, float x_noise_mult, int y_noise_mult,
+              float time_noise_mult, float noise_scalar) {
 
   double m;
   double _y;
@@ -51,8 +51,7 @@ void lineSegP(double x1, double y1, double x2, double y2, double Speed,
   b = y1 - m * x1;
 
 
-  delay(blot_time);
-  lift_to(x1, y1);
+  lift_to(x1, y1, button_state());
   delay(blot_time);
 
   if (x1 < x2) {

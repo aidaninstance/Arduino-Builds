@@ -75,23 +75,26 @@ void setup() {
   //TEMPORARY CLEAR
   //non_vol_clear();
 
-  // 5 seconds of time to give a fresh run, if not run from backup state
-  //digitalWrite(13, LOW);
-  //for (int i = 0; i < 100; i++) {
-  //  if (digitalRead(mem_button_pin) == LOW) {
-  //    EEPROM.update(0, 0);
-   //   digitalWrite(13, HIGH);
-  //  }
-  //  delay(50);
-  //}
+   //5 seconds of time to give a fresh run, if not run from backup state
+  digitalWrite(13, LOW);
+  for (int i = 0; i < 100; i++) {
+    if (digitalRead(mem_button_pin) == LOW) {
+      EEPROM.update(0, 0);
+      digitalWrite(13, HIGH);
+    }
+    delay(50);
+  }
 
-  //if(digitalRead(13) == LOW){
-   // LM_initial_length = (double)EEPROM.read(5) + (double)EEPROM.read(6) / 100 + 
-   //  (double)EEPROM.read(7) / 10000 + (double)EEPROM.read(8) / 1000000;
+  if(digitalRead(13) == LOW){
+    LM_initial_length = (double)EEPROM.read(5) + (double)EEPROM.read(6) / 100 + 
+     (double)EEPROM.read(7) / 10000 + (double)EEPROM.read(8) / 1000000;
 
-  //  RM_initial_length = (double)EEPROM.read(9) + (double)EEPROM.read(10) / 100 + 
-  //   (double)EEPROM.read(11) / 10000 + (double)EEPROM.read(12) / 1000000;
-  //}
+    RM_initial_length = (double)EEPROM.read(9) + (double)EEPROM.read(10) / 100 + 
+     (double)EEPROM.read(11) / 10000 + (double)EEPROM.read(12) / 1000000;
+
+     printDouble(LM_initial_length,4);
+     printDouble(RM_initial_length,4);
+  }
 
   delay(2000);
   //pen_depth_adjust();
