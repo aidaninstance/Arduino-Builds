@@ -43,6 +43,8 @@ void lineSegP(double x1, double y1, double x2, double y2, double Speed,
   double _y;
   double b;
 
+  _time = 0;
+
   if ((x2 - x1) == 0)
     m = 0;
   else
@@ -52,7 +54,7 @@ void lineSegP(double x1, double y1, double x2, double y2, double Speed,
 
 
   lift_to(x1, y1, button_state());
-  delay(blot_time);
+  //delay(blot_time);
 
   if (x1 < x2) {
     for (double x = x1; x < x2; x = x + .02) {

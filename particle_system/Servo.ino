@@ -1,5 +1,5 @@
 void penContact(bool contact_request) {
-  int start_angle = 20;
+  int start_angle = 25;
   int end_angle = 5;
 
   if (contact_request == true) {
@@ -27,6 +27,8 @@ void lift_to(double x, double y, int save) {
   }
   else {
     x_y_save();
+    circle_loop_save(0, 0, 1);
+
   }
 }
 

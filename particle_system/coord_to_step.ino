@@ -1,6 +1,6 @@
 void motorStep(double x, double y, double stepSpeed) {
   //request must be within drawing area
-  if (x > 5 && x < 34 && y > 5 && y < 45) {
+  if (x > 3 && x < 34 && y > 3.5 && y < 45) {
     //refresh stepNum_RM & stepNum_LM
     position_Request_RM(x, y);
     position_Request_LM(x, y);

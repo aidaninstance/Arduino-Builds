@@ -37,13 +37,16 @@ double desiredLength_RM;
 
 long _time = 0;
 
+double b_global;
+double lpx_global;
+
 void setup() {
 
   Serial.begin(9600);
 
   //servo init.
   servo_pen_contact.attach(4);
-  servo_pen_contact.write(10);
+  servo_pen_contact.write(25);
 
   //EEPROM memory IO
   pinMode(13, OUTPUT);
@@ -75,7 +78,7 @@ void setup() {
   //TEMPORARY CLEAR
   //non_vol_clear();
 
-   //5 seconds of time to give a fresh run, if not run from backup state
+  //5 seconds of time to give a fresh run, if not run from backup state
   digitalWrite(13, LOW);
   for (int i = 0; i < 100; i++) {
     if (digitalRead(mem_button_pin) == LOW) {
@@ -85,21 +88,31 @@ void setup() {
     delay(50);
   }
 
-  if(digitalRead(13) == LOW){
-    LM_initial_length = (double)EEPROM.read(5) + (double)EEPROM.read(6) / 100 + 
-     (double)EEPROM.read(7) / 10000 + (double)EEPROM.read(8) / 1000000;
+  if (digitalRead(13) == LOW) {
+    LM_initial_length = (double)EEPROM.read(5) + (double)EEPROM.read(6) / 100 +
+                        (double)EEPROM.read(7) / 10000 + (double)EEPROM.read(8) / 1000000;
 
-    RM_initial_length = (double)EEPROM.read(9) + (double)EEPROM.read(10) / 100 + 
-     (double)EEPROM.read(11) / 10000 + (double)EEPROM.read(12) / 1000000;
+    RM_initial_length = (double)EEPROM.read(9) + (double)EEPROM.read(10) / 100 +
+                        (double)EEPROM.read(11) / 10000 + (double)EEPROM.read(12) / 1000000;
 
-     printDouble(LM_initial_length,4);
-     printDouble(RM_initial_length,4);
+    EEPROM.update(0, 1);
+
   }
 
-  delay(2000);
-  //pen_depth_adjust();
+  //else {
+  //  delay(2000);
+  //  lift_to(4.4, 38.2, 0);
+  //  pen_depth_adjust();
+  //  lift_to(4.4, 3.9, 0);
+  //  pen_depth_adjust();
+  //  lift_to(29, 3.9, 0);
+  //  pen_depth_adjust();
+  //  lift_to(29, 38.2, 0);
+  //  pen_depth_adjust();
+  //}
+  
   world_sample();
-  motorStep(17.25,34.8,500);
+  motorStep(17.25, 34.8, 500);
   delay(1200000);
 }
 
